@@ -16,6 +16,7 @@ namespace FreeCourse.IdentityServer
         {
             new ApiResource("resource_catalog"){Scopes={"catalog_fullPermission"}},
             new ApiResource("resource_photo_stock"){Scopes={"photo_stock_fullPermission"}},
+            new ApiResource("resource_basket"){Scopes={"basket_fullPermission"}},
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
 
@@ -36,6 +37,7 @@ namespace FreeCourse.IdentityServer
             {
                 new ApiScope("catalog_fullPermission","Catalog API için full erişim"),
                 new ApiScope("photo_stock_fullPermission","Photo Stock API için full erişim"),
+                new ApiScope("basket_fullPermission","Basket API için full erişim"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
 
@@ -60,7 +62,14 @@ namespace FreeCourse.IdentityServer
                     ClientSecrets={new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowOfflineAccess= true, //OfflineAccess için izin verilir.
-                    AllowedScopes={IdentityServerConstants.StandardScopes.Email, IdentityServerConstants.StandardScopes.OpenId, IdentityServerConstants.StandardScopes.OfflineAccess,"roles",IdentityServerConstants.LocalApi.ScopeName}, //OfflineAccess = kullanıcı login olmasa dahi kullanıcı adına bir refresh token elde edebilmek için. kullanıcı offline olsa bile elimizdeki refresh token ile tekrar token alabiliriz. bu olmazsa login olmalı sonra token alır. Yani refresh token ile token alır.
+                    AllowedScopes=
+                    {
+                        "basket_fullPermission",
+                        IdentityServerConstants.StandardScopes.Email,
+                        IdentityServerConstants.StandardScopes.OpenId, 
+                        IdentityServerConstants.StandardScopes.OfflineAccess,
+                        "roles",
+                        IdentityServerConstants.LocalApi.ScopeName}, //OfflineAccess = kullanıcı login olmasa dahi kullanıcı adına bir refresh token elde edebilmek için. kullanıcı offline olsa bile elimizdeki refresh token ile tekrar token alabiliriz. bu olmazsa login olmalı sonra token alır. Yani refresh token ile token alır.
 
                     AccessTokenLifetime=1*60*60,//token ömrü 1 saat
                     RefreshTokenExpiration=TokenExpiration.Absolute,//refresh token ömrü belirtir.

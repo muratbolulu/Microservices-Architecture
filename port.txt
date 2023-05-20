@@ -1,2 +1,13 @@
 Services
  -catalogAPI=>http://localhost:5011
+ -photoStockAPI=>http://localhost:5012
+
+
+ portainer docker
+https://localhost:9443/#!/init/admin
+
+ portainer
+ admin-password123456
+ 
+
+ identityServer => http://localhost:5001

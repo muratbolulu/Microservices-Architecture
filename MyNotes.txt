@@ -1,2 +1,2 @@
 ﻿*Static methodlar ile geri dönüş değeri varsa bunlar static fatory method olarak adlandırılır.
-*Configuration Ayarlarını bir sınıf üzerine alarak okumaya ... pattern denir. 
+*Configuration Ayarlarını bir sınıf üzerine alarak okumaya options pattern denir. 
